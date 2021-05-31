@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_migrate import Migrate, MigrateCommand
+from flask_migrate import Migrate
 from flask_script import Manager
 
 import config
@@ -11,8 +11,8 @@ server.config["SQLALCHEMY_DATABASE_URI"] = config.DB_URI
 db.init_app(server)
 
 migrate = Migrate(server, db)
-manager = Manager(server)
-manager.add_command("db", MigrateCommand)
+# manager = Manager(server)
+# manager.add_command("db", Migrate)
 
-if __name__ == "__main__":
-    manager.run()
+# if __name__ == "__main__":
+#     manager.run()

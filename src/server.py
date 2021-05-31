@@ -1,52 +1,15 @@
-from flask import Flask, jsonify, request
+from app import app, db
 
-app = Flask(__name__)
-
-
-CityData = {
-        'Mumbai':{
-            'Theatres':{
-               'Ashok Anil Multiplex': 
-                {
-                    'Movies Playing':['Shawshank Redemption','ABCD'],
-                    'Seats':60,
-                    'Booked':0
-                },
-                'Sapna Theatres':
-                {
-                    'Movies Playing':['Fight Club','ABCD 2'],
-                    'Seats':60,
-                    'Booked':0
-                }
-            }
-        },
-        'Bangalore':{
-            'Theatres':{
-                'PVR-Kormangala': 
-                {
-                    'Movies Playing':['Shawshank Redemption','Inception'],
-                    'Seats':60,
-                    'Booked':0
-                },
-                'PVR-whitefiled':
-                {
-                    'Movies Playing':['Fight Club','3 Idiots','Inception'],
-                    'Seats':60,
-                    'Booked':0
-                }
-            }
-        }
-    }
 
 @app.route('/hello_world', methods=['GET'])
 def say_hi():
 	return jsonify({"message": "Hello World"})
 
-@app.route('/', methods=['GET'])
-def index():
-    cities = ['Mumbai','Bangalore','Delhi','Kolkata','Hyderabad']
-    return jsonify({"message":"Welcome to movies booking system, Kindly select a city from the list to proceed",
-                    "Cities":cities})
+
+@app.route('/showCities',methods=['GET'])
+def showCities():
+
+    
 
 
 @app.route('/showTheatres',methods=['GET'])
