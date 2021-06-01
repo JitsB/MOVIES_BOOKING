@@ -24,9 +24,8 @@ class Theatre(db.Model):
     booked_seats = db.Column(db.Integer)
     price = db.Column(db.Integer)
 
-    city_id = db.Column(db.Integer, db.ForeignKey('city.city_id'))
-
-    theatre = db.relationship('Theatre', backref='city')
+    t_city_id = db.Column(db.Integer, db.ForeignKey('city.city_id'))
+    theatre = db.relationship('City')
 
 
 
@@ -40,14 +39,10 @@ class Movie(db.Model):
     movie_cast = db.Column(db.String(300))
     movie_screen_time = db.Column(db.Integer)
 
-    theatre_id = db.Column(db.Integer, db.ForeignKey('theatre.theatre_id'))
-    movie = db.relationship('movie', backref='theatre')
+    m_theatre_id = db.Column(db.Integer, db.ForeignKey('theatre.theatre_id'))
+    movie = db.relationship('Theatre')
 
-    city_name = db.Column(db.String(300))
-    city_state = db.Column(db.String(300))
-
-
-
+    
 if __name__ == "__main__":
 
     # Run this file directly to create the database tables.

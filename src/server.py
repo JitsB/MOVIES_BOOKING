@@ -1,45 +1,46 @@
 from app import app, db
+from controller import CityRepository, MovieRepository, TheatreRepository
+from flask import Flask, jsonify, request
 
-
-@app.route('/hello_world', methods=['GET'])
+@app.route("/say_hi", methods=["GET"])
 def say_hi():
-	return jsonify({"message": "Hello World"})
+	return jsonify({"message": "Application is running"})
 
-
-@app.route('/showCities',methods=['GET'])
+@app.route("/showCities",methods=["GET"])
 def showCities():
+    cities = CityRepository.getAllCities()
+    return jsonify({"Cities":cities})
 
-    
-
-
-@app.route('/showTheatres',methods=['GET'])
+@app.route("/showTheatres",methods=["GET"])
 def getTheatresForMovie():
-    movie = request.args.get('movie')
-    city = request.args.get('city') # This should come from some saved state as it is passed in previous request
+    movie = request.args.get("movie")
+    city = request.args.get("city")
+
+    if not movie or not city:
+        return jsonify({"Message":"Please enter both city and movie to view theatres to book"})
+
     output_theatres = []
+    theatres = TheatreRepository.getTheatresShowingMovie(city, movie)
 
-    theatres = CityData[city]
-    for theatre in theatres.values():
-        for k, v in theatre.items():
-            if movie in v['Movies Playing']:
-                output_theatres.append(k)
-    
-    return jsonify({'Theatres to choose from':output_theatres})
+    if theatres:
+        return jsonify({"Theatres":theatres})
+    else:
+        return jsonify("Sorry, Theatres not found")
 
 
-
-@app.route('/showMovies',methods=['GET'])
+@app.route("/showMovies",methods=["GET"])
 def getMoviesForCity():
-    
-    city = request.args.get('city')
-    theatres = CityData[city]['Theatres']
-    movies_playing = []
+    city = request.args.get("city")
+    if not city:
+        return jsonify({"Message":"Please enter a city to view movies"})
 
-    for k,v in theatres.items():
-        movies_playing.extend(v['Movies Playing'])
-    
-    return jsonify({"Movies playing in the city":movies_playing,"message":"Kindly select the movie to watch"})
+    movies = MovieRepository.getAllMoviesForCity(city)
+
+    if movies:
+        return jsonify({"Movies":movies})
+    else:
+        return jsonify({"Message":"Sorry, Movies not found"})
 
 
-if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=5050, threaded= True)
+if __name__ == "__main__":
+	app.run(host="0.0.0.0", port=5050, threaded= True)
