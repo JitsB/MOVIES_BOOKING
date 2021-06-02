@@ -2,11 +2,6 @@ from app import app, db
 from controller import CityRepository, MovieRepository, TheatreRepository, BookingRepository
 from flask import Flask, jsonify, request, make_response
 
-# To do:
-
-# 2. Identify Error handling scenarios ?
-# 3. Add status codes to responses ?
-# 4. Why status codes are not appearing in postman ?
 
 @app.route("/showCities",methods=["GET"])
 def showCities():
@@ -25,7 +20,6 @@ def getTheatresForMovie():
     if not movie or not city:
         return make_response(jsonify("Please enter both city and movie to view theatres to book"),400)
 
-    output_theatres = []
     theatres = MovieRepository.getTheatresForCityMovie(city, movie)
 
     if theatres:
@@ -42,10 +36,10 @@ def getMoviesForCity():
 
     movies = MovieRepository.getAllMoviesForCity(city)
 
-    if movies:
-        return make_response(jsonify(movies), 200)
-    
-    return make_response(jsonify("Sorry, Movies not found"), status=404)
+    if not movies:
+        return make_response(jsonify("Sorry, Movies not found"), 404)
+
+    return make_response(jsonify(movies), 200)
 
 @app.route("/bookSeats",methods=["POST"])
 def bookSeats():
@@ -61,11 +55,11 @@ def bookSeats():
     
     result = BookingRepository.createBooking(city, movie, theatre, noSeats)
     if not result:
-        return make_response(jsonify("Some problem when booking seats"), 501) # ?
+        return make_response(jsonify("Theatre or city used for booking not found"), 400)
     elif result == -1:
         return make_response(jsonify("No of seats requested for booking are not available, reduce the no of seats to book"), 400)
     
-    return make_response(jsonify("Tickets booked successfully"), 201)
+    return make_response(jsonify("Tickets booked successfully, Booking ID: "+str(result)), 201)
 
 
 if __name__ == "__main__":
