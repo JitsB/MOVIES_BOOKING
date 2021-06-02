@@ -72,7 +72,6 @@ class Booking(db.Model):
     booking = db.relationship('User')
 
 
-# Add booking table, user table,  
 #Add indexes
 
 if __name__ == "__main__":
