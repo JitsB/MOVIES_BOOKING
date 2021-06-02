@@ -127,9 +127,9 @@ class MovieRepository:
         output_theatres = []
         for t in theatres:
             s = text(
-                "select * from theatre where theatre_id = (select m_theatre_id from movie where m_theatre_id = :id)"
+                "select * from theatre where theatre_id = (select m_theatre_id from movie where movie_name = :name and m_theatre_id = :id)"
             )
-            result = engine.execute(s, id=t["theatre_id"])
+            result = engine.execute(s, name=movie_n, id=t["theatre_id"])
             for row in result.fetchall():
                 output_theatres.append(dict(row))
             # output_theatres.append(dict(row) for row in result.fetchall())

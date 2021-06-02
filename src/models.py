@@ -28,17 +28,15 @@ class Movie(db.Model):
 
     __tablename__ = "movie"
 
-    movie_name = db.Column(db.String(300), primary_key=True) #Make it composite of name + theatreid
+    movie_name = db.Column(db.String(300), primary_key=True)
 
     movie_cast = db.Column(db.String(300))
     movie_screen_time = db.Column(db.Integer)
 
     total_seats = db.Column(db.Integer)
-    booked_seats = db.Column(db.Integer)
-
     price = db.Column(db.Integer)
 
-    m_theatre_id = db.Column(db.Integer, db.ForeignKey('theatre.theatre_id'), primary_key=True) # Check if it actually creates a composite key ?
+    m_theatre_id = db.Column(db.Integer, db.ForeignKey('theatre.theatre_id'), primary_key=True)
     movie = db.relationship('Theatre')
 
 
