@@ -1,4 +1,4 @@
-from app import db
+from config import db
 import datetime
 
 class City(db.Model):

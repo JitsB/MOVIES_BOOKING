@@ -1,29 +1,25 @@
 from models import City, Theatre, Movie
-from app import db, engine
+from config import db, engine
 from sqlalchemy import text
 import datetime
 
 
-#Why the need of classes ?
 class CityRepository:
     """ The repository for the city model """
 
-    def getAllCities():
+    def getAllCities(): #Get all cities present in the DB
         result = engine.execute(
             text(
                 "SELECT * from city;"
                 )
             )
-        
-        # print("Result rowcount: ",result.rowcount)
-        # print("Result.first()[0]: ",result.first()[0])
         rows = result.fetchall()
         if len(rows) == 0:
             return None
         cities = [dict(row) for row in rows]
         return cities
     
-    def getCityByName(name):
+    def getCityByName(name): #Get cities by their name
         s = text(
                 "SELECT * from city where city_name = :name"
                 )
@@ -36,7 +32,7 @@ class CityRepository:
         city = [dict(row) for row in rows]
         return cities
         
-    def getCityID(city_name):
+    def getCityID(city_name): # Get a city by its ID
         s = text(
                 "SELECT city_id from city where city_name = :city_name"
                 )
@@ -53,7 +49,7 @@ class CityRepository:
 class TheatreRepository:
     """ The repository for the theatre model """
 
-    def getTheatreByName(name):
+    def getTheatreByName(name): # Get theatres by name
         
         s = text(
                 "SELECT * from theatre where theatre_name = :name"
@@ -67,7 +63,7 @@ class TheatreRepository:
         return theatres
         
 
-    def getTheatreForCity(city_id):
+    def getTheatreByCityID(city_id): #Get theatres by city id
         s = text(
             "SELECT * from theatre where t_city_id = :city_id"
             )
@@ -76,38 +72,28 @@ class TheatreRepository:
         theatres = [dict(row) for row in result.fetchall()]
         return theatres
     
-    def getTheatreByCityID(theatre_id, city_id):
+    def getTheatreByTheatreID(theatre_id, city_id): # Get theatre by theatre_id and city_id
         s = text(
             "select * from theatre where theatre_id = :t_id and t_city_id = :city_id"
         )
         result = engine.execute(s, t_id = theatre_id, city_id = city_id)
         result = [dict(row) for row in result.fetchall()]
         return result
-    
-    def getTheatresShowingMovie(city_id):
-        
-        s = text(
-                "SELECT * from theatre where t_city_id = :city_id"
-                )
-        result = engine.execute(s, city_id=city_id)
-        theatres = [dict(row) for row in result.fetchall()]
-        
-        return theatres
         
 class MovieRepository:
     """ The repository for the movie model """
 
-    def getSeatsForMovie(movie_name, theatre_id):
+    def getSeatsForMovie(movie_name, theatre_id): # Getting the no of seats available for a movie
         s = text(
             "select total_seats from movie where movie_name = :movie and m_theatre_id = :theatre_id"
         )
         result = engine.execute(s, movie = movie_name, theatre_id = theatre_id)
         return dict(result.fetchall()[0])['total_seats']
         
-    def getAllMoviesForCity(city_name):
+    def getAllMoviesForCity(city_name): # Get all movies playing in a city
         city_id = CityRepository.getCityID(city_name)
         
-        theatres = TheatreRepository.getTheatresShowingMovie(city_id)
+        theatres = TheatreRepository.getTheatreByCityID(city_id)
         movies = []
         for t in theatres:
             s = text(
@@ -121,10 +107,10 @@ class MovieRepository:
         return movies
     
 
-    def getTheatresForCityMovie(city_name, movie_n): # Change this to perform queries using text !
+    def getTheatresForCityMovie(city_name, movie_n): # Get Movies playing in a city in a specific theatre
         city_id = CityRepository.getCityID(city_name)
 
-        theatres = TheatreRepository.getTheatresShowingMovie(city_id)
+        theatres = TheatreRepository.getTheatreByCityID(city_id)
     
         output_theatres = []
         for t in theatres:
@@ -141,12 +127,12 @@ class MovieRepository:
 
 class BookingRepository:
 
-    def createBooking(city, movie, theatre, seatsToBook):
+    def createBooking(city, movie, theatre, seatsToBook): # Book seats for a movie
         city_id = CityRepository.getCityID(city)
 
         theatre_id = TheatreRepository.getTheatreByName(theatre)['theatre_id']
         
-        theatres = TheatreRepository.getTheatreByCityID(theatre_id, city_id)
+        theatres = TheatreRepository.getTheatreByTheatreID(theatre_id, city_id)
         if not theatres:
             return None
 

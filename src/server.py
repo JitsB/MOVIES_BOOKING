@@ -1,4 +1,4 @@
-from app import app, db
+from config import app, db
 from controller import CityRepository, MovieRepository, TheatreRepository, BookingRepository
 from flask import Flask, jsonify, request, make_response
 
@@ -51,7 +51,7 @@ def bookSeats():
     noSeats = data["noSeats"]
 
     if not movie or not city or not noSeats or not theatre:
-        return make_respone(jsonify("Please enter movie, city, theatre and no of seats to book"), 400)
+        return make_response(jsonify("Please enter movie, city, theatre and no of seats to book"), 400)
     
     result = BookingRepository.createBooking(city, movie, theatre, noSeats)
     if not result:
