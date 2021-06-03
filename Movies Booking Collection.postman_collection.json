@@ -1,0 +1,261 @@
+{
+	"id": "d89519d2-7c28-8c25-5abe-7839ada3deed",
+	"name": "Movies Booking Collection",
+	"description": "",
+	"order": [
+		"b9294e72-b566-7365-5387-51beef79e450",
+		"43f1f47c-9e52-8c45-cd78-bb97049e96e2",
+		"bd8e1b20-5b1d-b6af-abe2-d8dbd9c75b04",
+		"6485416b-8654-a740-cb21-d0755e43291d"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1622647656846,
+	"owner": "1545468",
+	"public": false,
+	"requests": [
+		{
+			"id": "43f1f47c-9e52-8c45-cd78-bb97049e96e2",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:5050/showMovies?city=Mumbai",
+			"queryParams": [
+				{
+					"key": "city",
+					"value": "Mumbai",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "d89519d2-7c28-8c25-5abe-7839ada3deed",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Show all movies for a city",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1622647971123,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\r\n    \"name\":\"Dummy\",\r\n    \"size\":\"t4g.micro\"\r\n}"
+		},
+		{
+			"id": "6485416b-8654-a740-cb21-d0755e43291d",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:5050/showTheatres?city=Bangalore&movie=Inception",
+			"queryParams": [
+				{
+					"key": "city",
+					"value": "Bangalore",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "movie",
+					"value": "Inception",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "d89519d2-7c28-8c25-5abe-7839ada3deed",
+			"data": null,
+			"dataMode": "params",
+			"name": "Show all theatres for a movie in a city",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1622700759511,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "b9294e72-b566-7365-5387-51beef79e450",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:5050/showCities",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "d89519d2-7c28-8c25-5abe-7839ada3deed",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Show All Cities",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1622647729453,
+			"version": 2,
+			"responses": [
+				{
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK",
+						"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+					},
+					"time": 13,
+					"headers": [
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "829",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Thu, 03 Jun 2021 05:38:07 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/1.0.1 Python/3.8.6",
+							"description": "A name for the server"
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "[{\"m_theatre_id\":1,\"movie_cast\":\"Shahrukh Khan, Kajol\",\"movie_name\":\"DDLJ\",\"movie_screen_time\":\"100mins\",\"price\":100,\"total_seats\":60},{\"m_theatre_id\":4,\"movie_cast\":\"Leonardo Di Caprio\",\"movie_name\":\"Inception\",\"movie_screen_time\":\"130mins\",\"price\":200,\"total_seats\":46},{\"m_theatre_id\":2,\"movie_cast\":\"Brad Pitt\",\"movie_name\":\"Fight Club\",\"movie_screen_time\":\"150 mins\",\"price\":170,\"total_seats\":50},{\"m_theatre_id\":3,\"movie_cast\":\"Amitabh Bachchan, Dharmendra\",\"movie_name\":\"Sholay\",\"movie_screen_time\":\"150 mins\",\"price\":170,\"total_seats\":16},{\"m_theatre_id\":5,\"movie_cast\":\"Aamir Khan,R Madhavan, Sharman Joshi\",\"movie_name\":\"3 Idiots\",\"movie_screen_time\":\"150 mins\",\"price\":170,\"total_seats\":50},{\"m_theatre_id\":6,\"movie_cast\":\"Salman Khan\",\"movie_name\":\"Radhe\",\"movie_screen_time\":\"100 mins\",\"price\":100,\"total_seats\":0}]\n",
+					"language": "json",
+					"rawDataType": "text",
+					"previewType": "text",
+					"searchResultScrolledTo": -1,
+					"forceNoPretty": false,
+					"write": true,
+					"empty": false,
+					"failed": false,
+					"name": "All the movies in the DB",
+					"id": "d10ede34-29b9-1939-6990-a176956d788c",
+					"request": {
+						"url": "http://localhost:5050/showAllMovies",
+						"pathVariables": {},
+						"pathVariableData": [],
+						"queryParams": [],
+						"headerData": [],
+						"headers": "",
+						"data": "{\r\n    \"name\":\"Dummy\",\r\n    \"size\":\"t4g.micro\"\r\n}",
+						"method": "GET",
+						"dataMode": "raw"
+					}
+				},
+				{
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK"
+					},
+					"time": 13,
+					"headers": [
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "829",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Thu, 03 Jun 2021 05:38:07 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/1.0.1 Python/3.8.6",
+							"description": "A name for the server"
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "[{\"m_theatre_id\":1,\"movie_cast\":\"Shahrukh Khan, Kajol\",\"movie_name\":\"DDLJ\",\"movie_screen_time\":\"100mins\",\"price\":100,\"total_seats\":60},{\"m_theatre_id\":4,\"movie_cast\":\"Leonardo Di Caprio\",\"movie_name\":\"Inception\",\"movie_screen_time\":\"130mins\",\"price\":200,\"total_seats\":46},{\"m_theatre_id\":2,\"movie_cast\":\"Brad Pitt\",\"movie_name\":\"Fight Club\",\"movie_screen_time\":\"150 mins\",\"price\":170,\"total_seats\":50},{\"m_theatre_id\":3,\"movie_cast\":\"Amitabh Bachchan, Dharmendra\",\"movie_name\":\"Sholay\",\"movie_screen_time\":\"150 mins\",\"price\":170,\"total_seats\":16},{\"m_theatre_id\":5,\"movie_cast\":\"Aamir Khan,R Madhavan, Sharman Joshi\",\"movie_name\":\"3 Idiots\",\"movie_screen_time\":\"150 mins\",\"price\":170,\"total_seats\":50},{\"m_theatre_id\":6,\"movie_cast\":\"Salman Khan\",\"movie_name\":\"Radhe\",\"movie_screen_time\":\"100 mins\",\"price\":100,\"total_seats\":0}]\n",
+					"language": "json",
+					"rawDataType": "text",
+					"previewType": "text",
+					"searchResultScrolledTo": -1,
+					"forceNoPretty": false,
+					"write": true,
+					"empty": false,
+					"failed": false,
+					"name": "Show All Cities",
+					"id": "2b388240-689d-507c-6119-aa9a56f466ed",
+					"request": {
+						"url": "http://localhost:5050/showAllMovies",
+						"pathVariables": {},
+						"pathVariableData": [],
+						"queryParams": [],
+						"headerData": [],
+						"headers": "",
+						"data": "{\r\n    \"name\":\"Dummy\",\r\n    \"size\":\"t4g.micro\"\r\n}",
+						"method": "GET",
+						"dataMode": "raw"
+					}
+				}
+			],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\r\n    \"name\":\"Dummy\",\r\n    \"size\":\"t4g.micro\"\r\n}"
+		},
+		{
+			"id": "bd8e1b20-5b1d-b6af-abe2-d8dbd9c75b04",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:5050/bookSeats",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "d89519d2-7c28-8c25-5abe-7839ada3deed",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Book Seats for a movie",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1622655617850,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\r\n    \"city\":\"Bangalore\",\r\n    \"movie\":\"Inception\",\r\n    \"theatre\":\"Cinepolis: Forum Shantiniketan, Bengaluru\",\r\n    \"noSeats\":17\r\n}"
+		}
+	]
+}

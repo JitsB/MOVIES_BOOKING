@@ -49,6 +49,19 @@ class CityRepository:
 class TheatreRepository:
     """ The repository for the theatre model """
 
+    def getAllTheatres(): #Get all theatres
+        result = engine.execute(
+            text(
+                "SELECT * from theatre;"
+                )
+            )
+        rows = result.fetchall()
+        if len(rows) == 0:
+            return None
+
+        theatres = [dict(row) for row in rows]
+        return theatres
+
     def getTheatreByName(name): # Get theatres by name
         
         s = text(
@@ -82,6 +95,19 @@ class TheatreRepository:
         
 class MovieRepository:
     """ The repository for the movie model """
+
+    def getAllMovies(): #Get all movies
+        result = engine.execute(
+            text(
+                "SELECT * from movie;"
+                )
+            )
+        rows = result.fetchall()
+        if len(rows) == 0:
+            return None
+
+        movies = [dict(row) for row in rows]
+        return movies
 
     def getSeatsForMovie(movie_name, theatre_id): # Getting the no of seats available for a movie
         s = text(

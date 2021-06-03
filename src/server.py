@@ -3,7 +3,7 @@ from controller import CityRepository, MovieRepository, TheatreRepository, Booki
 from flask import Flask, jsonify, request, make_response
 
 
-@app.route("/showCities",methods=["GET"])
+@app.route("/showAllCities",methods=["GET"])
 def showCities():
     
     cities = CityRepository.getAllCities()
@@ -11,6 +11,26 @@ def showCities():
         return make_response(jsonify("Cities Not Found"), 404)
     
     return make_response(jsonify(cities), 200)
+
+
+@app.route("/showAllTheatres",methods=["GET"])
+def showTheatres():
+    
+    theatres = TheatreRepository.getAllTheatres()
+    if not theatres:
+        return make_response(jsonify("Theatres Not Found"), 404)
+    
+    return make_response(jsonify(theatres), 200)
+
+
+@app.route("/showAllMovies",methods=["GET"])
+def showMovies():
+    
+    movies = MovieRepository.getAllMovies()
+    if not movies:
+        return make_response(jsonify("Movies Not Found"), 404)
+    
+    return make_response(jsonify(movies), 200)
 
 @app.route("/showTheatres",methods=["GET"])
 def getTheatresForMovie():
