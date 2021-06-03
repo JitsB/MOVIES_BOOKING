@@ -19,5 +19,6 @@ APIs -
 6. /bookSeats - Takes city, movie, theatre and no of seats as input, creates a booking for the user and returns booking id
 
 
+Simplified System Architecture - 
 
-
+![MovieBooking_architecture](https://user-images.githubusercontent.com/10531214/120625380-41dfaa80-c47f-11eb-9b07-c330108158b3.png)
